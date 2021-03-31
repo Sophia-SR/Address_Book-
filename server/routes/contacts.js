@@ -1,47 +1,53 @@
 // require('dotenv').config()
-const morgan = require('morgan')
-const { Router } = require('express');
-const express = require('express'); 
+const morgan = require("morgan");
+const { Router } = require("express");
+const express = require("express");
 const router = express.Router();
-const pgp = require('pg-promise')({});
-const db = require('../app');
+const pgp = require("pg-promise")({});
+const db = require("../app");
 
-router.get('/', (req, res) => {
-    db.any("SELECT * FROM contacts")
-    .then(rows => {
-        console.log(rows);
-        res.json(rows)
+router.get("/", (req, res) => {
+  db.any("SELECT * FROM contacts")
+    .then((rows) => {
+      console.log(rows);
+      res.json(rows);
     })
-    .catch(error => {
-     console.log(error);
-    })
-})
+    .catch((error) => {
+      console.log(error);
+    });
+});
 
 router.post("/", async (req, res) => {
-    console.log(req.body) 
-    try{
-        let insertQuery = `INSERT INTO contacts (first_name, last_name, phone_number, email) VALUES ( $1, $2, $3, $4)`
-               await db.none(insertQuery, [req.body.first_name, req.body.last_name, req.body.phone_number, req.body.email])
-               console.log(req.body.firstName)
-                res.json({
-                payload: req.body,
-                message: "Contact Added"
-                })
-             } catch (error) {
-        console.log(error);
-     }
+  console.log(req.body);
+  try {
+    let insertQuery = `INSERT INTO contacts (first_name, last_name, phone_number, email) VALUES ( $1, $2, $3, $4)`;
+    await db.none(insertQuery, [
+      req.body.first_name,
+      req.body.last_name,
+      req.body.phone_number,
+      req.body.email,
+    ]);
+    console.log(req.body.firstName);
+    res.json({
+      payload: req.body,
+      message: "Contact Added",
     });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
-    
-    router.get("/", async (req, res) => {
-        try {
-            const { lastname } = req.query; 
-            const users = await db.any(`SELECT * FROM contacts WHERE last_name = ${lastname}`, [true]
-            );
-            res.json(contacts.rows); 
-        } catch (err) {
-            console.error(err.message);
-        }
-    });
+router.get("/", async (req, res) => {
+  try {
+    const { lastname } = req.query;
+    const users = await db.any(
+      `SELECT * FROM contacts WHERE last_name = ${lastname}`,
+      [true]
+    );
+    res.json(contacts.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
-    module.exports = router;
+module.exports = router;
