@@ -32,4 +32,16 @@ router.post("/", async (req, res) => {
      }
     });
 
+    
+    router.get("/", async (req, res) => {
+        try {
+            const { lastname } = req.query; 
+            const users = await db.any(`SELECT * FROM contacts WHERE last_name = ${lastname}`, [true]
+            );
+            res.json(contacts.rows); 
+        } catch (err) {
+            console.error(err.message);
+        }
+    });
+
     module.exports = router;
