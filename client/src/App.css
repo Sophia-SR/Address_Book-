@@ -28,7 +28,8 @@
   color: #194b58;
 }
 
-html, body {
+html,
+body {
   align-items: center;
   background: #b9c23a;
   border: 0;
@@ -41,7 +42,7 @@ html, body {
   padding: 0;
 }
 
- /* form {
+/* form {
   --background: white;
   --border: rgba(0, 0, 0, 0.125);
   --borderDark: rgba(0, 0, 0, 0.25);
@@ -68,17 +69,10 @@ html, body {
   overflow: hidden;
 }  */
 
-
-
-
-
-
-
 label {
   display: flex;
   flex-direction: column;
 }
-
 
 label > span {
   color: var(--borderDarker);
@@ -89,11 +83,7 @@ label > span {
   transition: all 0.25s;
 }
 
-
-
-
 /* trick from https://css-tricks.com/snippets/css/password-input-bullet-alternatives/ */
-
 
 label:hover span {
   color: hsl(var(--fgColorH), var(--fgColorS), var(--fgColorL));
@@ -103,7 +93,6 @@ input[type="checkbox"] + div label:hover span::before,
 label:hover input.text {
   border-color: hsl(var(--fgColorH), var(--fgColorS), var(--fgColorL));
 }
-
 
 input {
   border: 1px solid var(--border);
@@ -137,8 +126,8 @@ input[type="submit"] {
   justify-content: 'center';
   align-items: 'center';
 } */
- 
- #title{
+
+#title {
   background-image: url(https://cdn.shopify.com/s/files/1/0429/6795/7659/products/onedotatime_590x590.jpg?v=1600292318);
   background-repeat: repeat;
   -webkit-background-clip: text;
@@ -148,8 +137,7 @@ input[type="submit"] {
   text-align: center;
   font-weight: bold;
   text-transform: uppercase;
-  font-family: 'Steelfish Rg', 'helvetica neue',
-              helvetica, arial, sans-serif;
+  font-family: "Steelfish Rg", "helvetica neue", helvetica, arial, sans-serif;
   font-weight: 800;
   -webkit-font-smoothing: antialiased;
-} 
+}
